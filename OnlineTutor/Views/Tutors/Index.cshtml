@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OnlineTutor.Models.Tutor>
+﻿@model IEnumerable<OnlineTutor.DTOs.TutorDTO>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.TutorName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Subject)
+                Subject
             </th>
             <th></th>
         </tr>
@@ -28,7 +28,7 @@
                 @Html.DisplayFor(modelItem => item.TutorName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Subject.SubjectName)
+                @Html.DisplayFor(modelItem => item.SubjectName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.TutorId">Edit</a> |
