@@ -11,6 +11,10 @@ namespace OnlineTutor.Models
 		public DateTime SessionTime { get; set; }
 
 		[Required]
+		[Url]
+		public string MeetingLink { get; set; } = default!;
+
+		[Required]
 		public int TutorId { get; set; }
 		public Tutor Tutor { get; set; } = default!;
 	}

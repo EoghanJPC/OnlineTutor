@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using OnlineTutor.Data;
+using OnlineTutor.DTOs;
 using OnlineTutor.Models;
 
 namespace OnlineTutor.Controllers
@@ -22,9 +23,22 @@ namespace OnlineTutor.Controllers
         // GET: Sessions
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Sessions.Include(s => s.Tutor);
-            return View(await applicationDbContext.ToListAsync());
-        }
+			var sessions = await _context.Sessions
+				.Include(s => s.Tutor)
+					.ThenInclude(t => t.Subject)
+				.ToListAsync();
+
+			var viewModel = sessions.Select(s => new SessionDTO
+			{
+				SessionId = s.SessionId,
+				FormattedTime = s.SessionTime.ToString("f"),
+				MeetingLink = s.MeetingLink,
+				TutorName = s.Tutor?.TutorName ?? "Unknown Tutor",
+				SubjectName = s.Tutor?.Subject?.SubjectName ?? "N/A"
+			}).ToList();
+
+			return View(viewModel);
+		}
 
         // GET: Sessions/Details/5
         public async Task<IActionResult> Details(int? id)
