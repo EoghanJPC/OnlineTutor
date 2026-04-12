@@ -1,13 +1,17 @@
-﻿namespace OnlineTutor.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace OnlineTutor.Models
 {
 	public class Session
 	{
 		public int SessionId { get; set; }
 
+		[Required]
+		[DataType(DataType.DateTime)]
 		public DateTime SessionTime { get; set; }
 
+		[Required]
 		public int TutorId { get; set; }
-
 		public Tutor Tutor { get; set; }
 	}
 }
