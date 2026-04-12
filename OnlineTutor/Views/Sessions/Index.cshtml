@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OnlineTutor.Models.Session>
+﻿@model IEnumerable<OnlineTutor.DTOs.SessionDTO>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,10 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.SessionTime)
+                Date & Time
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Tutor)
+                Tutor
+            </th>
+            <th>
+                Subject
+            </th>
+            <th>
+                Meeting Link
             </th>
             <th></th>
         </tr>
@@ -25,10 +31,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.SessionTime)
+                @Html.DisplayFor(modelItem => item.FormattedTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Tutor.TutorName)
+                @Html.DisplayFor(modelItem => item.TutorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SubjectName)
+            </td>
+            <td>
+                <a href="@item.MeetingLink" target="_blank">Join Session</a>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.SessionId">Edit</a> |
