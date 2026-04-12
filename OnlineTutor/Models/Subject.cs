@@ -7,10 +7,10 @@ namespace OnlineTutor.Models
 		public int SubjectId { get; set; }
 
 		[Required]
-		public string SubjectName { get; set; }
+		public string SubjectName { get; set; } = default!;
 
-		public string SubjectDesc { get; set; }
+		public string SubjectDesc { get; set; } = default!;
 
-		public ICollection<Tutor> Tutors { get; set; }
+		public ICollection<Tutor> Tutors { get; set; } = new List<Tutor>();
 	}
 }
