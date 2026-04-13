@@ -31,7 +31,7 @@ namespace OnlineTutor.Tests
 		public void CorrectMapping()
 		{
 			var subject = new Subject { SubjectName = "DTO Testing" };
-			var tutor = new Tutor { TutorName = "J Bloggs" };
+			var tutor = new Tutor { TutorName = "J Bloggs", Subject = subject };
 			var session = new Session
 			{
 				SessionTime = new DateTime(2026, 4, 30, 14, 0, 0),
