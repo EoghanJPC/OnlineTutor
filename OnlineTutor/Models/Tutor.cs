@@ -6,7 +6,8 @@ namespace OnlineTutor.Models
 	{
 		public int TutorId { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Tutor Name Required")]
+		[StringLength(50, MinimumLength = 1)]
 		public string TutorName { get; set; } = default!;
 
 		[Required]

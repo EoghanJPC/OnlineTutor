@@ -8,6 +8,7 @@ namespace OnlineTutor.Models
 
 		[Required]
 		[DataType(DataType.DateTime)]
+		[Display(Name = "Session Start")]
 		public DateTime SessionTime { get; set; }
 
 		[Required]
