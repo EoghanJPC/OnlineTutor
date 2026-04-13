@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,8 @@ using OnlineTutor.Models;
 
 namespace OnlineTutor.Controllers
 {
-    public class TutorsController : Controller
+	[Authorize]
+	public class TutorsController : Controller
     {
         private readonly ApplicationDbContext _context;
 
@@ -20,8 +22,9 @@ namespace OnlineTutor.Controllers
             _context = context;
         }
 
-        // GET: Tutors
-        public async Task<IActionResult> Index()
+		// GET: Tutors
+		[AllowAnonymous]
+		public async Task<IActionResult> Index()
         {
 			var tutors = await _context.Tutors.Include(t => t.Subject).ToListAsync();
 
@@ -35,8 +38,9 @@ namespace OnlineTutor.Controllers
 			return View(viewModel); 
         }
 
-        // GET: Tutors/Details/5
-        public async Task<IActionResult> Details(int? id)
+		// GET: Tutors/Details/5
+		[AllowAnonymous]
+		public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
