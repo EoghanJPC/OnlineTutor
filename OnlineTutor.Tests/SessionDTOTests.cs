@@ -1,4 +1,5 @@
 ﻿using OnlineTutor.DTOs;
+using OnlineTutor.Models;
 
 namespace OnlineTutor.Tests
 {
@@ -24,6 +25,29 @@ namespace OnlineTutor.Tests
 			var dto = new SessionDTO { FormattedTime = futureDate };
 
 			Assert.True(dto.UpcomingSession);
+		}
+
+		[Fact]
+		public void CorrectMapping()
+		{
+			var subject = new Subject { SubjectName = "DTO Testing" };
+			var tutor = new Tutor { TutorName = "J Bloggs" };
+			var session = new Session
+			{
+				SessionTime = new DateTime(2026, 4, 30, 14, 0, 0),
+				Tutor = tutor,
+			};
+
+			var dto = new SessionDTO
+			{
+				TutorName = session.Tutor.TutorName,
+				SubjectName = session.Tutor.Subject.SubjectName,
+				FormattedTime = session.SessionTime.ToString("f")
+			};
+
+			Assert.Equal("J Bloggs", dto.TutorName);
+			Assert.Equal("DTO Testing", dto.SubjectName);
+			Assert.Contains("30 April 2026", dto.FormattedTime);
 		}
 	}
 }
