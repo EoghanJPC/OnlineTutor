@@ -75,7 +75,7 @@ namespace OnlineTutor.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SessionId,SessionTime,TutorId")] Session session)
+        public async Task<IActionResult> Create([Bind("SessionId,SessionTime,MeetingLink,TutorId")] Session session)
         {
             if (ModelState.IsValid)
             {

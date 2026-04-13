@@ -17,6 +17,6 @@ namespace OnlineTutor.Models
 
 		[Required]
 		public int TutorId { get; set; }
-		public Tutor Tutor { get; set; } = default!;
+		public Tutor? Tutor { get; set; }
 	}
 }
