@@ -4,7 +4,11 @@
     ViewData["Title"] = "Subjects";
 }
 
-<h1>Index</h1>
+<h1>Subjects</h1>
+
+<div class="alert alert-info italic">
+    <i class="bi bi-quote"></i> "@ViewBag.Quote" — <strong>@ViewBag.Author</strong>
+</div>
 
 @if (User.IsInRole("Admin"))
 {

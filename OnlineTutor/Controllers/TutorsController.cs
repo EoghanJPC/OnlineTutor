@@ -9,6 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineTutor.Data;
 using OnlineTutor.DTOs;
 using OnlineTutor.Models;
+using System.Net.Http;
 
 namespace OnlineTutor.Controllers
 {
@@ -25,6 +26,21 @@ namespace OnlineTutor.Controllers
 		// GET: Tutors
 		public async Task<IActionResult> Index()
         {
+			using (var client = new HttpClient())
+			{
+				try
+				{
+					var response = await client.GetFromJsonAsync<dynamic>("https://api.quotable.io/random?tags=education|wisdom");
+					ViewBag.Quote = response?.content;
+					ViewBag.Author = response?.author;
+				}
+				catch
+				{
+					ViewBag.Quote = "Knowledge is power.";
+					ViewBag.Author = "Francis Bacon";
+				}
+			}
+
 			var tutors = await _context.Tutors.Include(t => t.Subject).ToListAsync();
 
 			var viewModel = tutors.Select(t => new TutorDTO

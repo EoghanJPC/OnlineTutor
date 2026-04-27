@@ -4,7 +4,11 @@
     ViewData["Title"] = "Tutors";
 }
 
-<h1>Index</h1>
+<h1>Tutors</h1>
+
+<div class="alert alert-info italic">
+    <i class="bi bi-quote"></i> "@ViewBag.Quote" — <strong>@ViewBag.Author</strong>
+</div>
 
 @if (User.IsInRole("Admin"))
 {
@@ -20,7 +24,7 @@
             </th>
             <th>
                 Subject
-            </th>
+			</th>
             <th></th>
         </tr>
     </thead>
@@ -41,15 +45,11 @@
                     }
             </td>
             <td>
-                    <form asp-controller="Payment" asp-action="CreateDonation" method="post" style="display:inline;">
-                        <input type="hidden" name="amount" value="5" />
-                        <input type="hidden" name="tutor" value="@item.TutorName" />
-                        <button type="submit" class="btn btn-sm btn-outline-success">Tip €5</button>
+                 <form asp-controller="Payment" asp-action="CreateDonation" method="post" style="display:inline;">
+                    <input type="hidden" name="amount" value="5" />
+                    <input type="hidden" name="tutor" value="@item.TutorName" />
+                    <button type="submit" class="btn btn-sm btn-outline-success">Tip €5</button>
                  </form>
-    
-                 @if (User.IsInRole("Admin"))
-                 {
-                }
             </td>
         </tr>
 }
