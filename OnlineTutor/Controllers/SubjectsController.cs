@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 using OnlineTutor.Data;
 using OnlineTutor.DTOs;
 using OnlineTutor.Models;
-using System.Net.Http;
+using static OnlineTutor.Controllers.TutorsController;
 
 namespace OnlineTutor.Controllers
 {
@@ -31,14 +32,19 @@ namespace OnlineTutor.Controllers
 			{
 				try
 				{
-					var response = await client.GetFromJsonAsync<dynamic>("https://api.quotable.io/random?tags=education|wisdom");
-					ViewBag.Quote = response?.content;
-					ViewBag.Author = response?.author;
+					string url = "https://zenquotes.io/api/random/" + DateTime.Now.Ticks;
+					var response = await client.GetFromJsonAsync<List<QuoteResponse>>(url);
+
+					if (response != null && response.Count > 0)
+					{
+						ViewBag.Quote = response[0].q;
+						ViewBag.Author = response[0].a;
+					}
 				}
 				catch
 				{
-					ViewBag.Quote = "Knowledge is power.";
-					ViewBag.Author = "Francis Bacon";
+					ViewBag.Quote = "The beautiful thing about learning is that no one can take it away from you.";
+					ViewBag.Author = "B.B. King";
 				}
 			}
 
@@ -53,6 +59,13 @@ namespace OnlineTutor.Controllers
 
             return View(viewModel);
         }
+
+		public class QuoteResponse
+		{
+			public string q { get; set; }
+			public string a { get; set; }
+
+		}
 
 		// GET: Subjects/Details/5
 		[AllowAnonymous]

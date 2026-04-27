@@ -30,14 +30,19 @@ namespace OnlineTutor.Controllers
 			{
 				try
 				{
-					var response = await client.GetFromJsonAsync<dynamic>("https://api.quotable.io/random?tags=education|wisdom");
-					ViewBag.Quote = response?.content;
-					ViewBag.Author = response?.author;
+					string url = "https://zenquotes.io/api/random/" + DateTime.Now.Ticks;
+					var response = await client.GetFromJsonAsync<List<QuoteResponse>>(url);
+
+					if (response != null && response.Count > 0)
+					{
+						ViewBag.Quote = response[0].q;
+						ViewBag.Author = response[0].a;
+					}
 				}
 				catch
 				{
-					ViewBag.Quote = "Knowledge is power.";
-					ViewBag.Author = "Francis Bacon";
+					ViewBag.Quote = "The beautiful thing about learning is that no one can take it away from you.";
+					ViewBag.Author = "B.B. King";
 				}
 			}
 
@@ -51,6 +56,13 @@ namespace OnlineTutor.Controllers
 			}).ToList();
 
 			return View(viewModel); 
+        }
+
+        public class QuoteResponse
+        {
+            public string q { get; set; }
+            public string a { get; set; }
+
         }
 
 		// GET: Tutors/Details/5
