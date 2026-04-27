@@ -10,6 +10,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 	options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
 	options.SignIn.RequireConfirmedAccount = false;
 	options.Password.RequireDigit = false;
@@ -21,6 +24,12 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+	app.UseSwagger();
+	app.UseSwaggerUI();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -55,4 +64,4 @@ using (var scope = app.Services.CreateScope())
 	await DataInitaliser.SeedRoles(services);
 }
 
-	app.Run();
+app.Run();
