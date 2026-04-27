@@ -58,8 +58,9 @@ namespace OnlineTutor.Controllers
             return View(tutor);
         }
 
-        // GET: Tutors/Create
-        public IActionResult Create()
+		// GET: Tutors/Create
+		[Authorize(Roles = "Admin")]
+		public IActionResult Create()
         {
             ViewData["SubjectId"] = new SelectList(_context.Subjects, "SubjectId", "SubjectName");
             return View();
@@ -70,7 +71,8 @@ namespace OnlineTutor.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("TutorId,TutorName,SubjectId")] Tutor tutor)
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Create([Bind("TutorId,TutorName,SubjectId")] Tutor tutor)
         {
             if (ModelState.IsValid)
             {
@@ -82,8 +84,9 @@ namespace OnlineTutor.Controllers
             return View(tutor);
         }
 
-        // GET: Tutors/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+		// GET: Tutors/Edit/5
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -104,7 +107,8 @@ namespace OnlineTutor.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("TutorId,TutorName,SubjectId")] Tutor tutor)
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Edit(int id, [Bind("TutorId,TutorName,SubjectId")] Tutor tutor)
         {
             if (id != tutor.TutorId)
             {
@@ -135,8 +139,9 @@ namespace OnlineTutor.Controllers
             return View(tutor);
         }
 
-        // GET: Tutors/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+		// GET: Tutors/Delete/5
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
@@ -157,7 +162,8 @@ namespace OnlineTutor.Controllers
         // POST: Tutors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var tutor = await _context.Tutors.FindAsync(id);
             if (tutor != null)

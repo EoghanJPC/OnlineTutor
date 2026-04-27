@@ -57,8 +57,9 @@ namespace OnlineTutor.Controllers
             return View(subject);
         }
 
-        // GET: Subjects/Create
-        public IActionResult Create()
+		// GET: Subjects/Create
+		[Authorize(Roles = "Admin")]
+		public IActionResult Create()
         {
             return View();
         }
@@ -68,7 +69,8 @@ namespace OnlineTutor.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("SubjectId,SubjectName,SubjectDesc")] Subject subject)
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Create([Bind("SubjectId,SubjectName,SubjectDesc")] Subject subject)
         {
             if (ModelState.IsValid)
             {
@@ -79,8 +81,9 @@ namespace OnlineTutor.Controllers
             return View(subject);
         }
 
-        // GET: Subjects/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+		// GET: Subjects/Edit/5
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
@@ -100,7 +103,8 @@ namespace OnlineTutor.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("SubjectId,SubjectName,SubjectDesc")] Subject subject)
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Edit(int id, [Bind("SubjectId,SubjectName,SubjectDesc")] Subject subject)
         {
             if (id != subject.SubjectId)
             {
@@ -130,8 +134,9 @@ namespace OnlineTutor.Controllers
             return View(subject);
         }
 
-        // GET: Subjects/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+		// GET: Subjects/Delete/5
+		[Authorize(Roles = "Admin")]
+		public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
