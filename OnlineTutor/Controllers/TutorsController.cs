@@ -23,7 +23,6 @@ namespace OnlineTutor.Controllers
         }
 
 		// GET: Tutors
-		[AllowAnonymous]
 		public async Task<IActionResult> Index()
         {
 			var tutors = await _context.Tutors.Include(t => t.Subject).ToListAsync();

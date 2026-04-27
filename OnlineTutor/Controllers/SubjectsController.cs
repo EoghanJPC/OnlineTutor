@@ -23,7 +23,7 @@ namespace OnlineTutor.Controllers
         }
 
 		// GET: Subjects
-		[AllowAnonymous]
+
 		public async Task<IActionResult> Index()
         {
             var subjects = await _context.Subjects.ToListAsync();

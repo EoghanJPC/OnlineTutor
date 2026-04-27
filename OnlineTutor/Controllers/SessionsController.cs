@@ -44,7 +44,6 @@ namespace OnlineTutor.Controllers
 		}
 
 		// GET: Sessions/Details/5
-		[AllowAnonymous]
 		public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
