@@ -40,6 +40,17 @@
                         <a asp-action="Delete" asp-route-id="@item.TutorId" class="btn btn-danger">Delete</a>
                     }
             </td>
+            <td>
+                    <form asp-controller="Payment" asp-action="CreateDonation" method="post" style="display:inline;">
+                        <input type="hidden" name="amount" value="5" />
+                        <input type="hidden" name="tutor" value="@item.TutorName" />
+                        <button type="submit" class="btn btn-sm btn-outline-success">Tip €5</button>
+                 </form>
+    
+                 @if (User.IsInRole("Admin"))
+                 {
+                }
+            </td>
         </tr>
 }
     </tbody>
