@@ -49,4 +49,10 @@ app.MapControllerRoute(
 app.MapRazorPages()
    .WithStaticAssets();
 
-app.Run();
+using (var scope = app.Services.CreateScope())
+{
+	var services = scope.ServiceProvider;
+	await DataInitaliser.SeedRoles(services);
+}
+
+	app.Run();
