@@ -9,7 +9,7 @@ namespace OnlineTutor.Controllers
 	{
 		public PaymentController()
 		{
-			Stripe.StripeConfiguration.ApiKey = "sk_test_4eC39HqLyjWDarjtT1zdp7dc";
+			Stripe.StripeConfiguration.ApiKey = "sk_test_51TQnARLuScwtNoH6ZugxWc8Nwpu13sZ3gWVbiWqzgzRnCfsKaL2q8gPob89KqRBoAGWQHBM7ZCt6gUOZFZYK2hqc00Z4DgadXj";
 		}
 
 		public IActionResult Index() => View();
