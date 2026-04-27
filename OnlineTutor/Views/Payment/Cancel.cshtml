@@ -1,5 +1,17 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    ViewData["Title"] = "Payment Cancelled";
 }
+
+<div class="container mt-5 text-center">
+    <div class="card border-warning shadow-sm">
+        <div class="card-body py-5">
+            <h1 class="text-warning">Payment Cancelled</h1>
+            <p class="lead">It looks like you didn't finish the donation process.</p>
+            <p>No charges were made to your account, if you find money has left - it should return within 48 hours!</p>
+            <div class="mt-4">
+                <a asp-action="Index" class="btn btn-warning">Back to Donation Page</a>
+                <a asp-controller="Home" asp-action="Index" class="btn btn-light">Go Home</a>
+            </div>
+        </div>
+    </div>
+</div>

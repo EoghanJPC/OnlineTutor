@@ -24,6 +24,13 @@
         </dd>
     </dl>
 </div>
+<form asp-controller="Payment" asp-action="CreateDonation" method="POST">
+    <input type="hidden" name="tutorName" value="@Model.TutorName" />
+    <input type="hidden" name="amount" value="5" />
+    <button type="submit" class="btn btn-sm btn-outline-success">
+        Tip @Model.TutorName €5
+    </button>
+</form>
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.TutorId">Edit</a> |
     <a asp-action="Index">Back to List</a>
