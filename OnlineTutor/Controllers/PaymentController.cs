@@ -17,11 +17,7 @@ namespace OnlineTutor.Controllers
 		[HttpPost]
 		public IActionResult CreateDonation(long amount, string tutor)
 		{
-<<<<<<< HEAD
 			var domain = "https://localhost:7004"; 
-=======
-			var domain = "https://localhost:7004";
->>>>>>> 586f3ed (Work in Progress)
 
 			var options = new SessionCreateOptions
 			{
