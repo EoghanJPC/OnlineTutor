@@ -23,6 +23,13 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options => {
 	.AddDefaultUI();
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddAuthentication()
+	.AddGoogle(options =>
+	{
+		options.ClientId = "565542239514-5nf26kephhr6eboia5ins5ce3uggv27q.apps.googleusercontent.com";
+		options.ClientSecret = "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";
+	});
+
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
