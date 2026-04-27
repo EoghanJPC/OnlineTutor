@@ -28,7 +28,12 @@ builder.Services.AddAuthentication()
 	{
 		options.ClientId = "565542239514-5nf26kephhr6eboia5ins5ce3uggv27q.apps.googleusercontent.com";
 		options.ClientSecret = "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";
-	});
+	})
+	.AddMicrosoftAccount(microsoftOptions =>
+	 {
+		 microsoftOptions.ClientId = "24acf9ce-f4f1-4e9e-b062-283356419c8b";
+		 microsoftOptions.ClientSecret = "aV_8Q~lrPe21z-.5vhNtqsKq4.KS81blhLKhVdCa";
+	 });
 
 var app = builder.Build();
 
