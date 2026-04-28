@@ -37,7 +37,15 @@
                 <div class="card h-100 shadow-sm tutor-card border-0">
                     <div class="card-body text-center p-4">
                         <div class="rounded-circle bg-primary text-white d-inline-flex align-items-center justify-content-center mb-3 shadow-sm" style="width: 80px; height: 80px;">
-                            <span class="fs-2 fw-bold">@item.TutorName.Substring(0, 1)</span>
+                            <span class="fs-2 fw-bold text-uppercase">
+                                @{
+                                    var names = item.TutorName.Split(' ');
+                                    var initials = names.Length > 1
+                                        ? names[0][0].ToString() + names[names.Length - 1][0].ToString()
+                                        : names[0][0].ToString();
+                                }
+                                @initials
+                            </span>
                         </div>
                         
                         <h4 class="card-title fw-bold text-dark">@item.TutorName</h4>
