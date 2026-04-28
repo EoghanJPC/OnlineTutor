@@ -2,14 +2,45 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container mt-5">
-    <div class="p-5 mb-4 bg-light rounded-3 shadow-sm border">
-        <div class="container-fluid py-5 text-center">
-            <h1 class="display-4 fw-bold text-primary">Online Tutoring Tool</h1>
-            <p class="fs-4">Supporting Sustainable Development Goal 4 by providing an online platform for students and tutors to interact with ease.</p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a asp-controller="Tutors" asp-action="Index" class="btn btn-primary btn-lg px-4 gap-3">See Tutors</a>
-                <a asp-controller="Sessions" asp-action="Index" class="btn btn-outline-secondary btn-lg px-4">View Sessions</a>
+<div class="container py-5">
+    <div class="row align-items-center mb-5">
+        <div class="col-lg-6">
+            <h1 class="display-3 fw-bold text-primary mb-3">Empowering Education for All</h1>
+            <p class="lead text-muted mb-4">
+                We are committed to <strong>Sustainable Development Goal 4</strong>: Ensuring inclusive and equitable quality education for everyone.
+            </p>
+            <div class="d-flex gap-3">
+                <a asp-controller="Tutors" asp-action="Index" class="btn btn-primary btn-lg px-4 shadow">Find a Tutor</a>
+                <a asp-controller="Sessions" asp-action="Index" class="btn btn-outline-primary btn-lg px-4">Browse Sessions</a>
+            </div>
+        </div>
+        <div class="col-lg-6 d-none d-lg-block">
+            <div class="bg-light p-5 rounded-circle text-center border shadow-sm">
+                <i class="bi bi-mortarboard text-primary" style="font-size: 8rem;"></i>
+            </div>
+        </div>
+    </div>
+
+    <div class="row text-center mt-5">
+        <div class="col-md-4">
+            <div class="p-4 border rounded-3 bg-white shadow-sm">
+                <i class="bi bi-person-check text-success fs-1"></i>
+                <h3 class="mt-3">Expert Tutors</h3>
+                <p class="text-muted">Learn from vetted professionals across multiple subjects.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 border rounded-3 bg-white shadow-sm">
+                <i class="bi bi-globe text-info fs-1"></i>
+                <h3 class="mt-3">Accessible</h3>
+                <p class="text-muted">Join from anywhere in the world, at any time.</p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="p-4 border rounded-3 bg-white shadow-sm">
+                <i class="bi bi-heart text-danger fs-1"></i>
+                <h3 class="mt-3">Free Learning</h3>
+                <p class="text-muted">Education is a right, not a privilege. Supported by community tips.</p>
             </div>
         </div>
     </div>
