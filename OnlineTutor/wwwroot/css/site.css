@@ -82,3 +82,27 @@ body {
     border-radius: 20px;
     font-size: 0.85rem;
 }
+
+.subject-card-horizontal {
+    border: none;
+    border-radius: 12px;
+    border-left: 6px solid #78C2AD; 
+    background: #fff;
+    transition: all 0.2s ease-in-out;
+}
+
+    .subject-card-horizontal:hover {
+        background-color: #f0fdfa; 
+        transform: scale(1.01);
+    }
+
+.icon-box {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(120, 194, 173, 0.1);
+    border-radius: 10px;
+    color: #78C2AD;
+}
