@@ -52,3 +52,33 @@ body {
     font-size: 0.8rem;
     font-weight: bold;
 }
+
+.tutor-card {
+    border: none;
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    background: #fff;
+}
+
+    .tutor-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 10px 20px rgba(120, 194, 173, 0.2) !important; 
+    }
+
+.italic-quote {
+    background-color: #f8fdfb;
+    border-left: 5px solid #78C2AD;
+    border-radius: 8px;
+    padding: 1.5rem;
+    font-style: italic;
+    color: #555;
+}
+
+.subject-badge {
+    background-color: rgba(120, 194, 173, 0.1);
+    color: #78C2AD;
+    font-weight: bold;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+}
