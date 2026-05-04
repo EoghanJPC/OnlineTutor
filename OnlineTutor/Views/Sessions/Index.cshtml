@@ -28,24 +28,40 @@
             <div class="col-12 mb-3">
                 <div class="card session-card shadow-sm p-3">
                     <div class="row align-items-center text-center text-md-start">
-                        
+                    
                         <div class="col-md-2 mb-2 mb-md-0">
                             <div class="session-time-box">
                                 <span class="d-block fw-bold text-primary">@item.FormattedTime</span>
                             </div>
                         </div>
 
-                        <div class="col-md-5">
+                        <div class="col-md-4">
                             <h5 class="mb-1 fw-bold">@item.SubjectName</h5>
                             <p class="text-muted mb-0">
                                 <i class="bi bi-person-circle me-1"></i> Tutor: <strong>@item.TutorName</strong>
                             </p>
                         </div>
 
-                        <div class="col-md-3">
-                            <a href="@item.MeetingLink" target="_blank" class="btn btn-sm btn-outline-primary rounded-pill px-4">
-                                <i class="bi bi-camera-video me-1"></i> Join Session
-                            </a>
+                        <div class="col-md-4 text-center">
+                            @if (item.UpcomingSession)
+                            {
+                                <a href="@item.MeetingLink" target="_blank" class="btn btn-sm btn-success rounded-pill px-4">
+                                    <i class="bi bi-camera-video me-1"></i> Join Session
+                                </a>
+                            }
+                            else
+                            {
+                                <button class="btn btn-sm btn-secondary rounded-pill px-4" disabled title="This session has already ended">
+                                    <i class="bi bi-calendar-check me-1"></i> Session Ended
+                                </button>
+                            }
+
+                            @if (!string.IsNullOrEmpty(item.StudyNotes))
+                            {
+                                <button class="btn btn-sm btn-outline-info rounded-pill ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#notes-@item.SessionId">
+                                    <i class="bi bi-journal-text me-1"></i> View Notes
+                                </button>
+                            }
                         </div>
 
                         <div class="col-md-2 text-md-end">
@@ -62,8 +78,27 @@
                             }
                         </div>
                     </div>
+
+                    <div class="collapse" id="notes-@item.SessionId">
+                        <hr />
+                        <div class="p-2 bg-light rounded position-relative">
+                            <h6 class="fw-bold"><i class="bi bi-sticky me-2"></i>Study Notes:</h6>
+                            <p id="content-@item.SessionId">@item.StudyNotes</p>
+                            <button class="btn btn-sm btn-light border position-absolute top-0 end-0 m-2" onclick="copyNotes('@item.SessionId')">
+                                <i class="bi bi-clipboard"></i> Copy
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         }
     </div>
+
+    <script>
+            function copyNotes(id) {
+                var text = document.getElementById('content-' + id).innerText;
+                navigator.clipboard.writeText(text);
+                alert("Notes copied to clipboard!");
+            }
+    </script>
 </div>
