@@ -11,5 +11,7 @@
 		public string SubjectName { get; set; } = default!;
 
 		public bool UpcomingSession => DateTime.Parse(FormattedTime) > DateTime.Now;
+
+		public string? StudyNotes { get; set; }
 	}
 }

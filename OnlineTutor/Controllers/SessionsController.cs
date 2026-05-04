@@ -58,7 +58,8 @@ namespace OnlineTutor.Controllers
 				FormattedTime = s.SessionTime.ToString("f"),
 				MeetingLink = s.MeetingLink,
 				TutorName = s.Tutor?.TutorName ?? "Unknown Tutor",
-				SubjectName = s.Tutor?.Subject?.SubjectName ?? "N/A"
+				SubjectName = s.Tutor?.Subject?.SubjectName ?? "N/A",
+                StudyNotes = s.StudyNotes
 			}).ToList();
 
 			return View(viewModel);
@@ -104,7 +105,7 @@ namespace OnlineTutor.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 		[Authorize(Roles = "Admin")]
-		public async Task<IActionResult> Create([Bind("SessionId,SessionTime,MeetingLink,TutorId")] Session session)
+		public async Task<IActionResult> Create([Bind("SessionId,SessionTime,MeetingLink,TutorId,StudyNotes")] Session session)
         {
             if (ModelState.IsValid)
             {
@@ -140,7 +141,7 @@ namespace OnlineTutor.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 		[Authorize(Roles = "Admin")]
-		public async Task<IActionResult> Edit(int id, [Bind("SessionId,SessionTime,TutorId")] Session session)
+		public async Task<IActionResult> Edit(int id, [Bind("SessionId,SessionTime,TutorId,StudyNotes")] Session session)
         {
             if (id != session.SessionId)
             {
