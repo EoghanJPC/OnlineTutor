@@ -4,6 +4,8 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+	  <WarningsAsErrors></WarningsAsErrors>
+	  <NuGetAudit>false</NuGetAudit>
     <UserSecretsId>aspnet-OnlineTutor-5ab7dbab-2585-4338-af63-14f5c7c2cfcf</UserSecretsId>
   </PropertyGroup>
 
@@ -23,6 +25,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.2" />
+    <PackageReference Include="QuestPDF" Version="2026.2.4" />
     <PackageReference Include="Stripe.net" Version="51.1.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.1.7" />
   </ItemGroup>

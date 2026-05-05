@@ -10,6 +10,7 @@ using OnlineTutor.Data;
 using OnlineTutor.DTOs;
 using OnlineTutor.Models;
 using System.Net.Http;
+using OnlineTutor.Services;
 
 namespace OnlineTutor.Controllers
 {
@@ -17,6 +18,7 @@ namespace OnlineTutor.Controllers
     public class SessionsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly PdfService _pdfService = new PdfService();
 
         public SessionsController(ApplicationDbContext context)
         {
@@ -141,7 +143,7 @@ namespace OnlineTutor.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
 		[Authorize(Roles = "Admin")]
-		public async Task<IActionResult> Edit(int id, [Bind("SessionId,SessionTime,TutorId,StudyNotes")] Session session)
+		public async Task<IActionResult> Edit(int id, [Bind("SessionId,SessionTime,MeetingLink,TutorId,StudyNotes")] Session session)
         {
             if (id != session.SessionId)
             {
@@ -211,6 +213,23 @@ namespace OnlineTutor.Controllers
         private bool SessionExists(int id)
         {
             return _context.Sessions.Any(e => e.SessionId == id);
+        }
+
+        [Authorize]
+        public async Task<IActionResult> DownloadNotes(int id)
+        {
+            var session = await _context.Sessions
+                .Include(s => s.Tutor)
+                    .ThenInclude(t => t.Subject)
+                .FirstOrDefaultAsync(s => s.SessionId == id);
+
+
+            if (session == null || string.IsNullOrEmpty(session.StudyNotes)) return NotFound();
+
+            var subjectName = session.Tutor?.Subject?.SubjectName ?? "Session";
+            var pdf = _pdfService.GenerateSessionNotes(session.StudyNotes, session.SessionTime, subjectName);
+
+            return File(pdf, "application/pdf", $"{subjectName} - StudyNotes.pdf");
         }
     }
 }

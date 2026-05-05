@@ -23,6 +23,16 @@
                 <select asp-for="TutorId" class="form-control" asp-items="ViewBag.TutorId"></select>
                 <span asp-validation-for="TutorId" class="text-danger"></span>
             </div>
+            <div class="form-group mb-3">
+                <label asp-for="MeetingLink" class="control-label fw-bold"></label>
+                <input asp-for="MeetingLink" class="form-control" placeholder="https://zoom.us/j/..." />
+                <span asp-validation-for="MeetingLink" class="text-danger"></span>
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="StudyNotes" class="control-label fw-bold"></label>
+                <textarea asp-for="StudyNotes" class="form-control" rows="4" placeholder="Enter session summaries, key points, or links here..."></textarea>
+                <span asp-validation-for="StudyNotes" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
