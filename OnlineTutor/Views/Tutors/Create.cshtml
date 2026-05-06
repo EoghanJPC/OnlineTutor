@@ -1,37 +1,52 @@
 ﻿@model OnlineTutor.Models.Tutor
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create Tutor";
 }
 
-<h1>Create</h1>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            
+            <a asp-action="Index" class="btn btn-link text-decoration-none p-0 mb-4 text-secondary">
+                <i class="bi bi-arrow-left"></i> &larr; Back to List
+            </a>
 
-<h4>Tutor</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="TutorName" class="control-label"></label>
-                <input asp-for="TutorName" class="form-control" />
-                <span asp-validation-for="TutorName" class="text-danger"></span>
+            <div class="card shadow-sm border-0 bg-body-tertiary">
+                <div class="card-body p-4 p-md-5">
+                    <h2 class="h4 fw-bold mb-1 text-body">Create New Tutor</h2>
+                    <p class="text-muted small mb-4">Add a new tutor and assign them a subject.</p>
+
+                    <form asp-action="Create">
+                        
+                        <div asp-validation-summary="All" class="text-danger small mb-3 fw-semibold"></div>
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="TutorName" class="form-control" placeholder="Tutor Name" />
+                            <label asp-for="TutorName" class="text-muted"></label>
+                            <span asp-validation-for="TutorName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <select asp-for="SubjectId" class="form-select" asp-items="ViewBag.SubjectId"></select>
+                            <label asp-for="SubjectId" class="text-muted">Subject</label>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary py-2.5 fw-semibold">
+                                Create Tutor
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="SubjectId" class="control-label"></label>
-                <select asp-for="SubjectId" class ="form-control" asp-items="ViewBag.SubjectId"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

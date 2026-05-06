@@ -1,39 +1,55 @@
 ﻿@model OnlineTutor.Models.Tutor
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit Tutor";
 }
 
-<h1>Edit</h1>
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5">
+            
+            <a asp-action="Index" class="btn btn-link text-decoration-none p-0 mb-4 text-secondary">
+                <i class="bi bi-arrow-left"></i> &larr; Back to List
+            </a>
 
-<h4>Tutor</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Edit">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <input type="hidden" asp-for="TutorId" />
-            <div class="form-group">
-                <label asp-for="TutorName" class="control-label"></label>
-                <input asp-for="TutorName" class="form-control" />
-                <span asp-validation-for="TutorName" class="text-danger"></span>
+            <div class="card shadow-sm border-0 bg-body-tertiary">
+                <div class="card-body p-4 p-md-5">
+                    <h2 class="h4 fw-bold mb-1 text-body">Edit Tutor</h2>
+                    <p class="text-muted small mb-4">Update this tutor's details or reassigned subject.</p>
+
+                    <form asp-action="Edit">
+                        
+                        <div asp-validation-summary="ModelOnly" class="text-danger small mb-3 fw-semibold"></div>
+                        
+                        <input type="hidden" asp-for="TutorId" />
+
+                        <div class="form-floating mb-3">
+                            <input asp-for="TutorName" class="form-control" placeholder="Tutor Name" />
+                            <label asp-for="TutorName" class="text-muted"></label>
+                            <span asp-validation-for="TutorName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="form-floating mb-4">
+                            <select asp-for="SubjectId" class="form-select" asp-items="ViewBag.SubjectId"></select>
+                            <label asp-for="SubjectId" class="text-muted">Subject</label>
+                            <span asp-validation-for="SubjectId" class="text-danger small"></span>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary py-2.5 fw-semibold">
+                                Save Changes
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label asp-for="SubjectId" class="control-label"></label>
-                <select asp-for="SubjectId" class="form-control" asp-items="ViewBag.SubjectId"></select>
-                <span asp-validation-for="SubjectId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
-            </div>
-        </form>
+
+        </div>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }
